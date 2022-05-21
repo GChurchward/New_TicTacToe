@@ -74,5 +74,48 @@ const playTicTacToe = () => {
 const gameplayer = (move) => {
     let moveToCheck = parseInt(move) - 1;
     let i;
-    for (i = 0;)
+    for (i = 0; i < tictactoe.length; i++) {
+        if (moveToCheck == i && tictactoe[i] === ' ') {
+            tictactoe[i] = player;
+            if (player === 'X') {
+                player = 'O';
+            } else if (player === 'O') {
+                player = 'X'
+            }
+        }else{
+            playTicTacToe();
+        }
+    }
+    console.log('\n');
+    printBoard();
+    const winner = calculateWinner();
+    if (winner != ' ') {
+        console.log('Winner is ${winner}')
+        process.exit(0);
+    }
+    playTicTacToe();
 }
+
+const calculateWinner = () => {
+    // We can improve this to make it less verbose by declaring the 
+    // slots as const like const zero = ticktacktoe[0];
+    // and replace all occurances
+    if (ticktacktoe[0] == ticktacktoe[1] && ticktacktoe[0] == ticktacktoe[2]) {
+           return ticktacktoe[0];
+       } else if (ticktacktoe[3] == ticktacktoe[4] && ticktacktoe[3] == ticktacktoe[5]) {
+           return ticktacktoe[3];
+       } else if (ticktacktoe[6] == ticktacktoe[7] && ticktacktoe[6] == ticktacktoe[8]) {
+           return ticktacktoe[6];
+       } else if (ticktacktoe[0] == ticktacktoe[3] && ticktacktoe[0] == ticktacktoe[6]) {
+           return ticktacktoe[0];
+       } else if (ticktacktoe[1] == ticktacktoe[4] && ticktacktoe[1] == ticktacktoe[7]) {
+           return ticktacktoe[1];
+       } else if (ticktacktoe[2] == ticktacktoe[5] && ticktacktoe[2] == ticktacktoe[8]) {
+           return winner = ticktacktoe[2];
+       } else if (ticktacktoe[0] == ticktacktoe[4] && ticktacktoe[0] == ticktacktoe[8]) {
+           return ticktacktoe[0];
+       }else if (ticktacktoe[2] == ticktacktoe[4] && ticktacktoe[2] == ticktacktoe[6]) {
+           return ticktacktoe[2];
+       }
+      return ‘ ‘;
+    }
